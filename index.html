@@ -2,34 +2,187 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hasan Zaidi - iOS Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hasan Zaidi - iOS Engineer Portfolio</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 2rem; }
-    h1 { color: #2b6cb0; }
-    .section { margin-top: 2rem; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+    }
+    nav {
+      background: #1e293b;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.8rem;
+    }
+    nav a {
+      color: #f1f5f9;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #38bdf8;
+    }
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #0f172a;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .tech-item {
+      background: #e2e8f0;
+      color: #0f172a;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #0f172a;
+      color: white;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
-  <h1>👋 Hi, I’m Hasan Zaidi</h1>
-  <p>Lead iOS Engineer | 10+ years | Published 6 apps</p>
-  
-  <div class="section">
+  <header>
+    <h1>Hasan Zaidi</h1>
+    <p>Lead iOS Engineer • 10+ Years Experience • 6 Published Apps</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#tech">Tech Stack</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
     <h2>About Me</h2>
-    <p>I build secure, scalable, and high-performance iOS apps using Swift, SwiftUI, UIKit, and Combine.</p>
-  </div>
+    <p>I’m a Lead iOS Engineer with expertise in Swift, SwiftUI, UIKit, and Combine. Over the past decade, I’ve built enterprise-grade apps in fintech, healthcare, aviation, e-commerce, and connected vehicles. My passion lies in architecting scalable mobile solutions and mentoring teams.</p>
+  </section>
 
-  <div class="section">
+  <section id="projects">
     <h2>Projects</h2>
-    <ul>
-      <li>✈️ Flight Tracker – Live arrivals/departures with SwiftUI + MapKit</li>
-      <li>🛒 Grocery List – iCloud Sync + Offline-first design</li>
-      <li>✅ ToDo App – Core Data + Combine</li>
-    </ul>
-  </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Flight Tracker</h3>
+        <p>Live flight status with MapKit integration, async/await networking, and Combine publishers. Users can search by airport, tail number, or flight number.</p>
+      </div>
+      <div class="card">
+        <h3>Grocery List with iCloud Sync</h3>
+        <p>SwiftUI app using CloudKit for seamless syncing across devices. Includes offline caching and real-time updates with Combine.</p>
+      </div>
+      <div class="card">
+        <h3>Core Data ToDo App</h3>
+        <p>Lightweight productivity app leveraging Core Data, MVVM, and SwiftUI. Includes snapshot testing and accessibility support.</p>
+      </div>
+      <div class="card">
+        <h3>Ally Banking Modules</h3>
+        <p>Enterprise fintech features with MVVM-C, modular architecture, SwiftUI + UIKit interoperability, and strong focus on accessibility (ADA compliance).</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="section">
+  <section id="tech">
+    <h2>Tech Stack & Expertise</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Core iOS</h3>
+        <div class="tech-list">
+          <span class="tech-item">Swift</span>
+          <span class="tech-item">SwiftUI</span>
+          <span class="tech-item">UIKit</span>
+          <span class="tech-item">Combine</span>
+          <span class="tech-item">Concurrency (async/await)</span>
+        </div>
+        <p>SwiftUI for modern declarative UIs, UIKit for legacy support, Combine for reactive pipelines, and structured concurrency for async flows.</p>
+      </div>
+      <div class="card">
+        <h3>Data & Storage</h3>
+        <div class="tech-list">
+          <span class="tech-item">Core Data</span>
+          <span class="tech-item">CloudKit</span>
+          <span class="tech-item">UserDefaults</span>
+          <span class="tech-item">Keychain</span>
+        </div>
+        <p>Core Data for persistence, CloudKit for iCloud sync, Keychain for sensitive data storage, and UserDefaults for lightweight settings.</p>
+      </div>
+      <div class="card">
+        <h3>Networking & APIs</h3>
+        <div class="tech-list">
+          <span class="tech-item">URLSession</span>
+          <span class="tech-item">REST</span>
+          <span class="tech-item">GraphQL</span>
+          <span class="tech-item">Alamofire</span>
+        </div>
+        <p>Async URLSession for modern networking, REST & GraphQL APIs integration, Alamofire for streamlined requests.</p>
+      </div>
+      <div class="card">
+        <h3>Tooling & Testing</h3>
+        <div class="tech-list">
+          <span class="tech-item">SnapshotTesting</span>
+          <span class="tech-item">XCTest</span>
+          <span class="tech-item">CI/CD (GitHub Actions)</span>
+          <span class="tech-item">CocoaPods / SwiftPM</span>
+        </div>
+        <p>Snapshot tests for UI regression, XCTest for unit/integration, GitHub Actions for CI/CD automation, and SwiftPM/CocoaPods for dependency management.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
     <h2>Connect</h2>
-    <p><a href="https://linkedin.com/in/">LinkedIn</a> | <a href="https://github.com/HasanZaidi">GitHub</a></p>
-  </div>
+    <p style="text-align: center;">Let’s connect on <a href="https://github.com/yourusername" target="_blank">GitHub</a> • <a href="https://linkedin.com/in/yourlinkedin" target="_blank">LinkedIn</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Hasan Zaidi • Built with HTML & CSS</p>
+  </footer>
 </body>
 </html>
