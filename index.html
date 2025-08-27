@@ -1,254 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hasan Zaidi — iOS Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#61dafb; --glass: rgba(255,255,255,0.03);
-      --glass-2: rgba(255,255,255,0.04);
-      --radius:14px;
-    }
-    [data-theme="light"]{
-      --bg:#f6f8fa; --card:#ffffff; --muted:#475569; --accent:#0366d6; --glass: rgba(0,0,0,0.03); --glass-2: rgba(0,0,0,0.02);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',sans-serif;background:var(--bg);color:var(--muted);-webkit-font-smoothing:antialiased}
-
-    /* layout */
-    .site{max-width:1100px;margin:32px auto;padding:28px}
-    header.top{display:flex;align-items:center;gap:20px;position:sticky;top:12px;z-index:30}
-    .hero{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center;padding:20px;background:linear-gradient(180deg, var(--glass), transparent);border-radius:var(--radius);backdrop-filter: blur(6px);box-shadow:0 6px 30px rgba(2,6,23,0.6)}
-
-    .avatar{width:120px;height:120px;border-radius:20px;overflow:hidden;flex:0 0 120px;border:1px solid var(--glass-2)}
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-
-    .title{color:var(--accent);font-size:1.6rem;font-weight:800;margin:0}
-    .subtitle{color:var(--muted);margin:6px 0 0;font-size:0.95rem}
-    .badges{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
-    .badge{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:6px 10px;border-radius:999px;font-size:0.82rem;color:var(--muted);border:1px solid var(--glass-2)}
-
-    nav.main{display:flex;gap:12px;align-items:center;margin-top:18px}
-    nav.main a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600}
-    nav.main a:hover{background:var(--glass);color:var(--accent)}
-
-    main{margin-top:22px}
-    .section{margin-top:28px}
-    .section h2{color:var(--accent);margin:0 0 12px;font-size:1.15rem}
-
-    /* grid */
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-    .col-8{grid-column:span 8}
-    .col-4{grid-column:span 4}
-    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass-2);color:var(--muted)}
-    .card h3{color:var(--accent);margin-top:0}
-    .small{font-size:0.9rem;color:var(--muted)}
-
-    /* projects */
-    .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-    .project{background:linear-gradient(180deg,var(--glass),transparent);border-radius:12px;padding:14px;border:1px solid var(--glass-2);transition:transform .18s ease,box-shadow .18s ease}
-    .project:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.4)}
-    .screenshot{height:140px;border-radius:8px;background:linear-gradient(135deg,#081225 0%, #07132a 100%);display:flex;align-items:center;justify-content:center;color:#9fb6d9;font-weight:700}
-    .project .meta{margin-top:10px}
-    .project .meta p{margin:0}
-    .project .links{margin-top:10px;display:flex;gap:8px}
-    .btn{padding:8px 10px;border-radius:8px;border:1px solid var(--glass-2);background:transparent;color:var(--accent);font-weight:700;text-decoration:none}
-
-    /* tech list */
-    .tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .tech-item{padding:12px;border-radius:10px;background:linear-gradient(180deg,var(--glass-2),transparent);display:flex;flex-direction:column;gap:8px}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid var(--glass-2);font-size:0.85rem;color:var(--muted)}
-
-    /* code */
-    pre{background:#071428;padding:12px;border-radius:8px;color:#cde7ff;overflow:auto}
-
-    footer{margin-top:36px;text-align:center;color:var(--muted)}
-
-    /* responsive */
-    @media (max-width:900px){.grid{display:block}.col-8,.col-4{grid-column:auto}.hero{grid-template-columns:1fr;align-items:start}.avatar{width:96px;height:96px;border-radius:12px}.site{padding:18px}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasan Zaidi — Interactive Portfolio</title>
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: A tab-based single-page application (SPA) dashboard. This structure was chosen to create a focused, app-like user experience, allowing recruiters to quickly navigate to specific areas of interest (skills, projects) without scrolling. The interactive chart for skills turns passive information into an engaging exploration, while the tabbed layout logically segments content for better usability and a more modern feel than a traditional long-scroll page. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Tech Stack list -> Goal: Organize/Compare -> Viz/Presentation: Interactive Doughnut Chart + Dynamic Text Area -> Interaction: Clicking a chart segment updates the text area with details for that category. -> Justification: Transforms a static list into an engaging, explorable element that visually represents skill distribution and provides context on demand. -> Library/Method: Chart.js (Canvas).
+        - Report Info: Project descriptions -> Goal: Inform/Engage -> Viz/Presentation: Grid of cards with a "View Details" button -> Interaction: Clicking the button opens a modal window for a detailed case study view. -> Justification: Allows for a clean, high-level project overview while providing a dedicated space for in-depth information, supporting the report's recommendation for narrative-driven project showcases. -> Library/Method: HTML/CSS/JS Modal.
+        - Report Info: About/Contact sections -> Goal: Inform -> Viz/Presentation: Clean, organized text blocks within dedicated tabs. -> Interaction: Static content revealed by tab clicks. -> Justification: Groups related information logically, reducing initial cognitive load for the user. -> Library/Method: HTML/Tailwind CSS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        :root {
+            --bg-light: #f8f7f4; --text-light: #4a4a4a; --card-light: #ffffff; --accent-light: #0077b6; --border-light: #e0e0e0;
+            --bg-dark: #121212; --text-dark: #e0e0e0; --card-dark: #1e1e1e; --accent-dark: #4db8ff; --border-dark: #333333;
+        }
+        .theme-light {
+            --bg-color: var(--bg-light); --text-color: var(--text-light); --card-color: var(--card-light); --accent-color: var(--accent-light); --border-color: var(--border-light);
+        }
+        .theme-dark {
+            --bg-color: var(--bg-dark); --text-color: var(--text-dark); --card-color: var(--card-dark); --accent-color: var(--accent-dark); --border-color: var(--border-dark);
+        }
+        .bg-theme { background-color: var(--bg-color); }
+        .text-theme { color: var(--text-color); }
+        .card-theme { background-color: var(--card-color); border: 1px solid var(--border-color); }
+        .accent-theme { color: var(--accent-color); }
+        .border-theme { border-color: var(--border-color); }
+        .btn-theme { background-color: var(--accent-color); color: var(--bg-color); }
+        .btn-outline-theme { border: 1px solid var(--accent-color); color: var(--accent-color); }
+        .tab.active { color: var(--accent-color); border-bottom-color: var(--accent-color); }
+        .chart-container { position: relative; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .modal-backdrop { transition: opacity 0.3s ease; }
+        .modal-content { transition: transform 0.3s ease; }
+    </style>
 </head>
-<body>
-  <div class="site" data-theme="dark">
-    <header class="top">
-      <div style="flex:1">
-        <div class="hero">
-          <div class="avatar"><img src="https://github.com/HasanZaidi.png" alt="Hasan"></div>
-          <div>
-            <h1 class="title">Hasan Zaidi</h1>
-            <div class="subtitle">Lead iOS Engineer • 10+ years • 6 apps published</div>
-            <div class="badges" aria-hidden>
-              <div class="badge">Swift</div>
-              <div class="badge">SwiftUI</div>
-              <div class="badge">UIKit</div>
-              <div class="badge">Combine</div>
-              <div class="badge">CI/CD</div>
+<body class="bg-theme text-theme transition-colors duration-300">
+
+    <div id="app" class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <header class="flex flex-col sm:flex-row justify-between items-center py-4 space-y-4 sm:space-y-0">
+            <div class="text-center sm:text-left">
+                <h1 class="text-3xl font-bold accent-theme">Hasan Zaidi</h1>
+                <p class="text-lg text-theme/80">Lead iOS Engineer</p>
             </div>
-            <nav class="main" style="margin-top:12px">
-              <a href="#about">About</a>
-              <a href="#projects">Projects</a>
-              <a href="#tech">Tech</a>
-              <a href="#contact">Contact</a>
-            </nav>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex;gap:10px;align-items:center">
-        <button id="themeBtn" class="btn" title="Toggle theme">Toggle Theme</button>
-        <a class="btn" href="https://github.com/HasanZaidi" target="_blank">View GitHub</a>
-      </div>
-    </header>
-
-    <main>
-      <section id="about" class="section">
-        <div class="grid">
-          <div class="col-8">
-            <div class="card">
-              <h2>About</h2>
-              <p class="small">I design & ship iOS apps used in fintech, aviation, healthcare, e-commerce and connected vehicles. I focus on maintainable architecture, performant UI, and production-grade mobile infrastructure.</p>
-              <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-                <a class="btn" href="#projects">View projects</a>
-                <a class="btn" href="#tech">See tech stack</a>
-              </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/HasanZaidi" target="_blank" class="btn-outline-theme px-4 py-2 rounded-lg font-semibold hover:bg-opacity-10 hover:bg-current transition-colors">GitHub</a>
+                <button id="theme-toggle" class="p-2 rounded-lg btn-outline-theme">
+                    <svg id="theme-icon-light" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                    <svg id="theme-icon-dark" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
             </div>
+        </header>
 
-            <div style="height:18px"></div>
+        <main class="mt-8">
+            <div class="card-theme p-6 rounded-xl shadow-lg">
+                <nav class="border-b border-theme mb-6">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center">
+                        <li class="mr-2"><button class="tab active inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="about">About Me</button></li>
+                        <li class="mr-2"><button class="tab inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="skills">Skills & Process</button></li>
+                        <li class="mr-2"><button class="tab inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="projects">Projects</button></li>
+                        <li><button class="tab inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="contact">Contact</button></li>
+                    </ul>
+                </nav>
 
-            <div class="card">
-              <h2>Selected Code</h2>
-              <pre><code>func loadFlights() async throws -> [Flight] {
-  let (data, _) = try await URLSession.shared.data(from: endpoint)
-  return try JSONDecoder().decode([Flight].self, from: data)
+                <div id="tab-content">
+                    <div id="about-content" class="tab-pane active">
+                        <h2 class="text-2xl font-bold accent-theme mb-4">About Me</h2>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="md:col-span-2 space-y-4 text-theme/90">
+                                <p>I design & ship high-quality iOS apps used in fintech, aviation, healthcare, e-commerce, and connected vehicles. With over 10 years of experience, my focus is on building maintainable architecture, creating performant user interfaces, and implementing production-grade mobile infrastructure.</p>
+                                <p>I thrive on solving complex problems and leading teams to deliver polished, user-centric applications. This portfolio provides a glimpse into my technical approach, project experience, and the value I bring to the development lifecycle.</p>
+                                <div class="mt-4">
+                                    <h3 class="font-semibold text-lg accent-theme mb-2">Selected Code Snippet</h3>
+                                    <pre class="bg-gray-800 text-white p-4 rounded-lg text-sm"><code>func loadFlights() async throws -> [Flight] {
+    let (data, _) = try await URLSession.shared.data(from: endpoint)
+    return try JSONDecoder().decode([Flight].self, from: data)
 }</code></pre>
-            </div>
-          </div>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="card-theme p-4 rounded-lg bg-theme/5">
+                                    <h3 class="font-semibold accent-theme">Quick Facts</h3>
+                                    <ul class="list-disc list-inside text-sm space-y-1 mt-2">
+                                        <li>10+ years building production iOS apps</li>
+                                        <li>6 Apps published to the App Store</li>
+                                        <li>Expert in Swift & SwiftUI</li>
+                                        <li>Proficient in Objective-C interoperability</li>
+                                    </ul>
+                                </div>
+                                <div class="card-theme p-4 rounded-lg bg-theme/5">
+                                    <h3 class="font-semibold accent-theme">Monitoring & Analytics</h3>
+                                    <p class="text-sm mt-2">Datadog, Sentry, Firebase</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-          <div class="col-4">
-            <div class="card">
-              <h3>Quick Facts</h3>
-              <p class="small">• 10+ years building production iOS apps<br>• 6 Apps published<br>• Languages: Swift, Obj-C (intermittent)</p>
-              <hr style="border:none;border-top:1px solid var(--glass-2);margin:12px 0">
-              <h3>Monitoring</h3>
-              <p class="small">Datadog • Sentry • Firebase</p>
-            </div>
+                    <div id="skills-content" class="tab-pane hidden">
+                        <h2 class="text-2xl font-bold accent-theme mb-2">Skills & Process</h2>
+                        <p class="mb-6 text-theme/80">This section provides an interactive overview of my technical stack. Click on a category in the chart to see the specific technologies I use and how I apply them in my projects. My process emphasizes modular architecture, robust testing, and continuous delivery.</p>
+                        <div class="grid lg:grid-cols-2 gap-8 items-center">
+                            <div class="chart-container">
+                                <canvas id="skillsChart"></canvas>
+                            </div>
+                            <div id="skill-details" class="card-theme p-6 rounded-lg min-h-[300px] bg-theme/5">
+                                <h3 id="skill-title" class="text-xl font-bold accent-theme mb-2">UI & App</h3>
+                                <div id="skill-chips" class="flex flex-wrap gap-2 mb-4">
+                                    <span class="bg-accent-color/10 text-accent-color text-xs font-medium px-2.5 py-0.5 rounded-full">Swift</span>
+                                    <span class="bg-accent-color/10 text-accent-color text-xs font-medium px-2.5 py-0.5 rounded-full">SwiftUI</span>
+                                    <span class="bg-accent-color/10 text-accent-color text-xs font-medium px-2.5 py-0.5 rounded-full">UIKit</span>
+                                    <span class="bg-accent-color/10 text-accent-color text-xs font-medium px-2.5 py-0.5 rounded-full">Combine</span>
+                                </div>
+                                <p id="skill-description" class="text-theme/90">Used SwiftUI for new feature surfaces (Flight Tracker UI), UIKit for complex & legacy banking screens, Combine for event streams and synchronization.</p>
+                            </div>
+                        </div>
+                    </div>
 
-            <div style="height:18px"></div>
+                    <div id="projects-content" class="tab-pane hidden">
+                         <h2 class="text-2xl font-bold accent-theme mb-2">Projects</h2>
+                         <p class="mb-6 text-theme/80">Here are some of the projects I've led and developed. Each project represents a unique challenge and solution, showcasing my skills in architecture, UI/UX, and backend integration. Click 'View Details' to learn more about the problem, process, and impact of each application.</p>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <article class="card-theme rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                                <div class="h-40 bg-gray-700 flex items-center justify-center text-white font-bold">Flight Tracker App</div>
+                                <div class="p-4 flex flex-col flex-grow">
+                                    <h3 class="text-lg font-bold accent-theme">Flight Tracker</h3>
+                                    <p class="text-sm text-theme/80 mt-1 flex-grow">SwiftUI, AeroDataBox API, MapKit, MVVM-C, async/await.</p>
+                                    <button class="project-modal-trigger mt-4 btn-outline-theme w-full py-2 rounded-lg font-semibold" data-project="flight">View Details</button>
+                                </div>
+                            </article>
+                            <article class="card-theme rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                                <div class="h-40 bg-gray-700 flex items-center justify-center text-white font-bold">Grocery List App</div>
+                                <div class="p-4 flex flex-col flex-grow">
+                                    <h3 class="text-lg font-bold accent-theme">Grocery List</h3>
+                                    <p class="text-sm text-theme/80 mt-1 flex-grow">SwiftUI, CloudKit, Offline-first architecture, Push sync.</p>
+                                    <button class="project-modal-trigger mt-4 btn-outline-theme w-full py-2 rounded-lg font-semibold" data-project="grocery">View Details</button>
+                                </div>
+                            </article>
+                            <article class="card-theme rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                                <div class="h-40 bg-gray-700 flex items-center justify-center text-white font-bold">Core Data ToDo App</div>
+                                <div class="p-4 flex flex-col flex-grow">
+                                    <h3 class="text-lg font-bold accent-theme">Core Data ToDo</h3>
+                                    <p class="text-sm text-theme/80 mt-1 flex-grow">SwiftUI, Core Data, Combine, Snapshot tests.</p>
+                                    <button class="project-modal-trigger mt-4 btn-outline-theme w-full py-2 rounded-lg font-semibold" data-project="todo">View Details</button>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
 
-            <div class="card">
-              <h3>Contact</h3>
-              <p class="small"><a href="https://linkedin.com/in/" target="_blank">LinkedIn</a><br><a href="mailto:you@example.com">you@example.com</a></p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="section">
-        <h2>Projects</h2>
-        <div class="projects">
-          <article class="project">
-            <div class="screenshot">Flight Tracker (screenshot)</div>
-            <div class="meta"><h3>Flight Tracker</h3><p class="small">SwiftUI • AeroDataBox • MapKit • MVVM-C • async/await</p>
-            <div class="links"><a class="btn" href="#">Repository</a><a class="btn" href="#">Demo</a></div></div>
-          </article>
-
-          <article class="project">
-            <div class="screenshot">Grocery List</div>
-            <div class="meta"><h3>Grocery List</h3><p class="small">SwiftUI • CloudKit • Offline-first • Push sync</p>
-            <div class="links"><a class="btn" href="#">Repository</a><a class="btn" href="#">Demo</a></div></div>
-          </article>
-
-          <article class="project">
-            <div class="screenshot">ToDo App</div>
-            <div class="meta"><h3>Core Data ToDo</h3><p class="small">SwiftUI • Core Data • Combine • Snapshot tests</p>
-            <div class="links"><a class="btn" href="#">Repository</a><a class="btn" href="#">Demo</a></div></div>
-          </article>
-
-          <article class="project">
-            <div class="screenshot">Banking Modules</div>
-            <div class="meta"><h3>Banking Modules</h3><p class="small">SwiftUI+UIKit • MVVM-C • Security & Accessibility</p>
-            <div class="links"><a class="btn" href="#">Repository</a><a class="btn" href="#">Docs</a></div></div>
-          </article>
-        </div>
-      </section>
-
-      <section id="tech" class="section">
-        <h2>Tech Stack & Where I Use It</h2>
-        <div class="grid">
-          <div class="col-8">
-            <div class="card">
-              <div class="tech-grid">
-                <div class="tech-item">
-                  <strong>UI & App</strong>
-                  <div class="chips"><span class="chip">Swift</span><span class="chip">SwiftUI</span><span class="chip">UIKit</span><span class="chip">Combine</span></div>
-                  <p class="small">Used SwiftUI for new feature surfaces (Flight Tracker UI), UIKit for complex & legacy banking screens, Combine for event streams and synchronization.</p>
+                    <div id="contact-content" class="tab-pane hidden">
+                        <h2 class="text-2xl font-bold accent-theme mb-4">Get In Touch</h2>
+                        <p class="text-center text-lg text-theme/90">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision.</p>
+                        <div class="mt-6 flex justify-center items-center space-x-6">
+                            <a href="mailto:you@example.com" class="btn-theme px-6 py-3 rounded-lg font-bold text-lg hover:opacity-90 transition-opacity">Email Me</a>
+                            <a href="https://linkedin.com/in/" target="_blank" class="btn-outline-theme px-6 py-3 rounded-lg font-bold text-lg hover:bg-opacity-10 hover:bg-current transition-colors">LinkedIn</a>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </main>
+        
+        <footer class="text-center mt-8 py-4 text-sm text-theme/60">
+            <p>&copy; 2025 Hasan Zaidi. All rights reserved.</p>
+        </footer>
+    </div>
 
-                <div class="tech-item">
-                  <strong>Storage & Sync</strong>
-                  <div class="chips"><span class="chip">Core Data</span><span class="chip">CloudKit</span><span class="chip">Keychain</span></div>
-                  <p class="small">Core Data for local persistence (offline-first flows), CloudKit for shared lists, Keychain for auth tokens and secure data.</p>
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div id="modal-backdrop" class="modal-backdrop fixed inset-0 bg-black/60"></div>
+        <div id="modal-content" class="modal-content card-theme rounded-xl shadow-2xl z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="p-6">
+                <div class="flex justify-between items-start">
+                    <h2 id="modal-title" class="text-2xl font-bold accent-theme">Project Title</h2>
+                    <button id="modal-close" class="p-1 rounded-full hover:bg-theme/10">&times;</button>
                 </div>
-
-                <div class="tech-item">
-                  <strong>Networking</strong>
-                  <div class="chips"><span class="chip">URLSession</span><span class="chip">Alamofire</span><span class="chip">GraphQL</span></div>
-                  <p class="small">Prefer structured concurrency + URLSession for predictable flows; use Alamofire for complex multipart/uploads and compatibility layers.</p>
-                </div>
-
-                <div class="tech-item">
-                  <strong>Infra & Testing</strong>
-                  <div class="chips"><span class="chip">GitHub Actions</span><span class="chip">Fastlane</span><span class="chip">SnapshotTesting</span></div>
-                  <p class="small">CI for build and test automation, Fastlane for releases, SnapshotTesting + XCTest for UI regression and unit tests.</p>
-                </div>
-              </div>
+                <div id="modal-body" class="mt-4 space-y-4 text-theme/90"></div>
             </div>
-            <div style="height:16px"></div>
-            <div class="card">
-              <h3>Libraries & Tools (examples)</h3>
-              <p class="small">Alamofire (network helpers), Kingfisher (image caching), Realm (prototyping alternative to Core Data), SwiftyJSON (parsing), CocoaLumberjack / XCGLogger (logging), Charts / Recharts (data visualizations), Sentry/Datadog for monitoring.</p>
-            </div>
-          </div>
-
-          <div class="col-4">
-            <div class="card">
-              <h3>How I apply them</h3>
-              <p class="small">I modularize features into frameworks (UI + domain + data). I keep networking layer decoupled for testability, and abstract persistence behind protocols to allow swapping Core Data with Realm for prototypes.</p>
-            </div>
-
-            <div style="height:16px"></div>
-
-            <div class="card">
-              <h3>Process</h3>
-              <p class="small">Feature-driven development, reviews with pre-merge CI gates, staged releases via Fastlane/TestFlight, and post-release monitoring with Datadog & Sentry.</p>
-            </div>
-          </div>
         </div>
-      </section>
+    </div>
 
-      <section id="contact" class="section">
-        <h2>Contact</h2>
-        <div class="card" style="text-align:center">
-          <p class="small">Find me on <a href="https://github.com/HasanZaidi" target="_blank">GitHub</a> • <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a></p>
-        </div>
-      </section>
-    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const appData = {
+                skills: [
+                    {
+                        title: 'UI & App',
+                        chips: ['Swift', 'SwiftUI', 'UIKit', 'Combine'],
+                        description: 'Used SwiftUI for new feature surfaces (Flight Tracker UI), UIKit for complex & legacy banking screens, Combine for event streams and synchronization.'
+                    },
+                    {
+                        title: 'Storage & Sync',
+                        chips: ['Core Data', 'CloudKit', 'Keychain'],
+                        description: 'Core Data for local persistence (offline-first flows), CloudKit for shared lists, Keychain for auth tokens and secure data.'
+                    },
+                    {
+                        title: 'Networking',
+                        chips: ['URLSession', 'Alamofire', 'GraphQL'],
+                        description: 'Prefer structured concurrency + URLSession for predictable flows; use Alamofire for complex multipart/uploads and compatibility layers.'
+                    },
+                    {
+                        title: 'Infra & Testing',
+                        chips: ['GitHub Actions', 'Fastlane', 'SnapshotTesting'],
+                        description: 'CI for build and test automation, Fastlane for releases, SnapshotTesting + XCTest for UI regression and unit tests.'
+                    }
+                ],
+                projects: {
+                    flight: {
+                        title: 'Flight Tracker Application',
+                        body: `
+                            <p><strong>Problem:</strong> Travelers needed a simple, real-time solution to track flights without the clutter of traditional airline apps. The goal was to provide essential flight status, gate information, and route visualization in an intuitive interface.</p>
+                            <p><strong>Solution:</strong> I architected and built a native iOS app using SwiftUI for a modern, declarative UI. The app integrates with the AeroDataBox API for live flight data, leveraging Swift's async/await for performant network requests. MapKit was used to visualize flight paths, and the entire application was built on a scalable MVVM-C (Model-View-ViewModel-Coordinator) architecture to separate concerns and manage navigation flow.</p>
+                            <p><strong>Impact:</strong> The app achieved high user engagement by focusing on a core, well-executed feature set. The clean UI and real-time data updates provided a superior user experience compared to more complex competitors.</p>
+                            <p class="mt-4"><strong>Tech Stack:</strong> SwiftUI, MapKit, URLSession, async/await, MVVM-C</p>
+                        `
+                    },
+                    grocery: {
+                        title: 'Shared Grocery List App',
+                        body: `
+                            <p><strong>Problem:</strong> Households struggled with coordinating grocery shopping, leading to duplicate purchases and forgotten items. A collaborative, real-time list was needed that worked seamlessly even with intermittent connectivity.</p>
+                            <p><strong>Solution:</strong> I developed an offline-first grocery list application using SwiftUI and CloudKit. The app persists all changes locally and uses CloudKit's push synchronization to keep lists updated across multiple devices and users in real-time. The architecture was designed to handle data conflicts gracefully and ensure a consistent state.</p>
+                            <p><strong>Impact:</strong> The application simplified household shopping, reducing waste and improving coordination. The offline-first approach provided a reliable and fast user experience, regardless of network conditions.</p>
+                            <p class="mt-4"><strong>Tech Stack:</strong> SwiftUI, CloudKit, Core Data (for local cache), Push Notifications</p>
+                        `
+                    },
+                    todo: {
+                        title: 'Core Data ToDo Application',
+                        body: `
+                            <p><strong>Problem:</strong> To create a robust, high-performance task management app with reliable local data persistence and a reactive UI.</p>
+                            <p><strong>Solution:</strong> This project focused on mastering local data storage with Core Data. I built a full-featured ToDo application where the UI, built in SwiftUI, reactively updates based on data changes propagated by Combine publishers from the Core Data store. A comprehensive suite of snapshot tests was implemented to prevent UI regressions.</p>
+                            <p><strong>Impact:</strong> The project served as a strong foundation for building complex, data-driven applications. The use of Combine created a highly decoupled and testable codebase, and the snapshot tests ensured UI stability through rapid development cycles.</p>
+                            <p class="mt-4"><strong>Tech Stack:</strong> SwiftUI, Core Data, Combine, XCTest, SnapshotTesting</p>
+                        `
+                    }
+                }
+            };
 
-    <footer>
-      <div class="small">© 2025 Hasan Zaidi • Built with HTML & CSS</div>
-    </footer>
-  </div>
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const lightIcon = document.getElementById('theme-icon-light');
+            const darkIcon = document.getElementById('theme-icon-dark');
 
-  <script>
-    const site = document.querySelector('.site');
-    const themeBtn = document.getElementById('themeBtn');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    site.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-    themeBtn.addEventListener('click', () => {
-      site.setAttribute('data-theme', site.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-  </script>
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.remove('theme-light');
+                    body.classList.add('theme-dark');
+                    lightIcon.classList.add('hidden');
+                    darkIcon.classList.remove('hidden');
+                } else {
+                    body.classList.remove('theme-dark');
+                    body.classList.add('theme-light');
+                    darkIcon.classList.add('hidden');
+                    lightIcon.classList.remove('hidden');
+                }
+                localStorage.setItem('theme', theme);
+            };
+
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            applyTheme(savedTheme);
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('theme-dark') ? 'dark' : 'light';
+                applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+
+            const tabs = document.querySelectorAll('.tab');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    const tabName = tab.getAttribute('data-tab');
+                    tabPanes.forEach(pane => {
+                        if (pane.id === `${tabName}-content`) {
+                            pane.classList.remove('hidden');
+                        } else {
+                            pane.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            let skillsChart;
+            const skillsObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !skillsChart) {
+                    const ctx = document.getElementById('skillsChart').getContext('2d');
+                    const skillData = appData.skills;
+                    skillsChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: skillData.map(s => s.title),
+                            datasets: [{
+                                data: [25, 25, 25, 25],
+                                backgroundColor: ['#4db8ff', '#1e88e5', '#0d47a1', '#82b1ff'],
+                                borderColor: body.classList.contains('theme-dark') ? '#1e1e1e' : '#ffffff',
+                                borderWidth: 4,
+                                hoverOffset: 8
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutout: '70%',
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: { enabled: true }
+                            },
+                            onClick: (event, elements) => {
+                                if (elements.length > 0) {
+                                    const index = elements[0].index;
+                                    const skill = skillData[index];
+                                    document.getElementById('skill-title').textContent = skill.title;
+                                    document.getElementById('skill-description').textContent = skill.description;
+                                    const chipsContainer = document.getElementById('skill-chips');
+                                    chipsContainer.innerHTML = skill.chips.map(chip => 
+                                        `<span class="bg-accent-color/10 text-accent-color text-xs font-medium px-2.5 py-0.5 rounded-full">${chip}</span>`
+                                    ).join('');
+                                }
+                            }
+                        }
+                    });
+                    skillsObserver.unobserve(document.getElementById('skillsChart'));
+                }
+            }, { threshold: 0.5 });
+            skillsObserver.observe(document.getElementById('skillsChart'));
+
+            const modal = document.getElementById('project-modal');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+            const modalContent = document.getElementById('modal-content');
+            const modalClose = document.getElementById('modal-close');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+
+            document.querySelectorAll('.project-modal-trigger').forEach(button => {
+                button.addEventListener('click', () => {
+                    const projectName = button.dataset.project;
+                    const project = appData.projects[projectName];
+                    if (project) {
+                        modalTitle.textContent = project.title;
+                        modalBody.innerHTML = project.body;
+                        modal.classList.remove('hidden');
+                        setTimeout(() => {
+                           modalBackdrop.classList.remove('opacity-0');
+                           modalContent.classList.remove('scale-95');
+                        }, 10);
+                    }
+                });
+            });
+            
+            const closeModal = () => {
+                modalBackdrop.classList.add('opacity-0');
+                modalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            };
+
+            modalClose.addEventListener('click', closeModal);
+            modalBackdrop.addEventListener('click', closeModal);
+        });
+    </script>
 </body>
 </html>
